@@ -83,6 +83,24 @@
             background-size: 35px 35px;
         }
     </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '964715476394919');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=964715476394919&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-brand-cyan selection:text-black min-h-screen cyber-grid overflow-x-hidden">
 
@@ -679,6 +697,19 @@
             m.classList.remove('flex');
             document.body.style.overflow = 'auto';
         }
+
+        // Meta Pixel: Track InitiateCheckout when clicking Hotmart buttons
+        document.querySelectorAll('a[href*="hotmart.com"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (typeof fbq === 'function') {
+                    fbq('track', 'InitiateCheckout', {
+                        content_name: 'Mega Bóveda Digital +500 Apps',
+                        value: 4.99,
+                        currency: 'USD'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
